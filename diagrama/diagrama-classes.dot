@@ -1,0 +1,113 @@
+digraph NEXUM_UML {
+  graph [rankdir=TB, bgcolor="white", pad="0.30", nodesep="0.55", ranksep="0.95", splines=ortho,
+         fontname="DejaVu Sans", labelloc="t", label="NEXUM - Diagrama de Classes (Etapa 2)", fontsize=24, fontcolor="#0F172A"];
+  node [shape=plain, fontname="DejaVu Sans", fontsize=10];
+  edge [fontname="DejaVu Sans", fontsize=9, color="#475569", penwidth=1.4, arrowsize=0.8];
+
+  Cliente [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>Cliente</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- nome: String<BR ALIGN="LEFT"/>- telefone: String<BR ALIGN="LEFT"/>- email: String<BR ALIGN="LEFT"/>- endereco: String<BR ALIGN="LEFT"/>- ativo: boolean</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ alterarNome(nome): void<BR ALIGN="LEFT"/>+ atualizarContato(...): void<BR ALIGN="LEFT"/>+ atualizarEndereco(...): void<BR ALIGN="LEFT"/>+ desativar(): void<BR ALIGN="LEFT"/>+ reativar(): void</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  Usuario [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>Usuario</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- nome: String<BR ALIGN="LEFT"/>- email: String<BR ALIGN="LEFT"/>- senhaHash: String<BR ALIGN="LEFT"/>- perfil: PerfilAcesso<BR ALIGN="LEFT"/>- ativo: boolean</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ alterarNome(nome): void<BR ALIGN="LEFT"/>+ alterarEmail(email): void<BR ALIGN="LEFT"/>+ alterarSenhaHash(hash): void<BR ALIGN="LEFT"/>+ alterarPerfil(perfil): void<BR ALIGN="LEFT"/>+ desativar(): void<BR ALIGN="LEFT"/>+ reativar(): void</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  Encomenda [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>Encomenda</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- dataCriacao: LocalDateTime<BR ALIGN="LEFT"/>- dataEntregaPrevista: LocalDate<BR ALIGN="LEFT"/>- dataEntregaReal: LocalDate<BR ALIGN="LEFT"/>- origem: OrigemEncomenda<BR ALIGN="LEFT"/>- status: StatusEncomenda<BR ALIGN="LEFT"/>- observacoes: String</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ adicionarItem(item, usuario): void<BR ALIGN="LEFT"/>+ adicionarEtapaProducao(...): void<BR ALIGN="LEFT"/>+ registrarPagamento(pagamento): void<BR ALIGN="LEFT"/>+ estornarPagamento(...): void<BR ALIGN="LEFT"/>+ alterarStatus(status, usuario): void<BR ALIGN="LEFT"/>+ atualizarPrazoEntrega(...): void<BR ALIGN="LEFT"/>+ registrarSolicitacaoDeAlteracao(...): void<BR ALIGN="LEFT"/>+ getValorTotal(): BigDecimal<BR ALIGN="LEFT"/>+ getTotalPago(): BigDecimal<BR ALIGN="LEFT"/>+ getSaldoPendente(): BigDecimal</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  ItemEncomenda [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>ItemEncomenda</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- descricao: String<BR ALIGN="LEFT"/>- quantidade: Integer<BR ALIGN="LEFT"/>- valorUnitario: BigDecimal<BR ALIGN="LEFT"/>- observacoes: String</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ alterarDescricao(texto): void<BR ALIGN="LEFT"/>+ atualizarQuantidade(qtd): void<BR ALIGN="LEFT"/>+ atualizarValorUnitario(valor): void<BR ALIGN="LEFT"/>+ adicionarPersonalizacao(item): void<BR ALIGN="LEFT"/>+ calcularSubtotal(): BigDecimal</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  Personalizacao [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>Personalizacao</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- tipo: String<BR ALIGN="LEFT"/>- descricao: String<BR ALIGN="LEFT"/>- dataSolicitacao: LocalDateTime</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ alterarDescricao(texto): void<BR ALIGN="LEFT"/>+ alterarTipo(tipo): void</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  EtapaProducao [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>EtapaProducao</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- nome: String<BR ALIGN="LEFT"/>- descricao: String<BR ALIGN="LEFT"/>- ordem: Integer<BR ALIGN="LEFT"/>- status: StatusEtapaProducao<BR ALIGN="LEFT"/>- dataInicioPrevista: LocalDate<BR ALIGN="LEFT"/>- dataFimPrevista: LocalDate<BR ALIGN="LEFT"/>- dataInicioReal: LocalDateTime<BR ALIGN="LEFT"/>- dataFimReal: LocalDateTime</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ atribuirResponsavel(usuario): void<BR ALIGN="LEFT"/>+ iniciar(): void<BR ALIGN="LEFT"/>+ pausar(): void<BR ALIGN="LEFT"/>+ concluir(): void<BR ALIGN="LEFT"/>+ reprogramar(inicio, fim): void</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  Pagamento [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>Pagamento</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- valor: BigDecimal<BR ALIGN="LEFT"/>- formaPagamento: FormaPagamento<BR ALIGN="LEFT"/>- status: StatusPagamento<BR ALIGN="LEFT"/>- dataPagamento: LocalDateTime<BR ALIGN="LEFT"/>- observacao: String</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">+ Pagamento(valor, forma, data, ...)<BR ALIGN="LEFT"/>Estorno realizado por Encomenda</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  HistoricoAlteracao [label=<
+    <TABLE BORDER="1" COLOR="#0D9488" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#0F172A"><FONT COLOR="white"><B>HistoricoAlteracao</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">- id: Long<BR ALIGN="LEFT"/>- tipo: TipoAlteracao<BR ALIGN="LEFT"/>- descricao: String<BR ALIGN="LEFT"/>- campoAlterado: String<BR ALIGN="LEFT"/>- valorAnterior: String<BR ALIGN="LEFT"/>- valorNovo: String<BR ALIGN="LEFT"/>- dataHora: LocalDateTime</FONT></TD></TR>
+      <TR><TD BGCOLOR="#CCFBF1"><FONT COLOR="#134E4A" POINT-SIZE="9"><B>Métodos de domínio</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">~ {static} registrar(...): HistoricoAlteracao</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  subgraph cluster_enums {
+    label="ENUMS DO DOMÍNIO"; color="#CBD5E1"; style="rounded,dashed"; fontsize=12; fontcolor="#334155";
+    node [shape=box, style="rounded,filled", fillcolor="#F1F5F9", color="#94A3B8", fontname="DejaVu Sans", fontsize=9, margin="0.12,0.08"];
+    PerfilAcesso [label="PerfilAcesso\nADMINISTRADOR\nATENDIMENTO\nPRODUCAO\nENTREGA"];
+    OrigemEncomenda [label="OrigemEncomenda\nWHATSAPP\nINSTAGRAM\nPRESENCIAL"];
+    StatusEncomenda [label="StatusEncomenda\nRECEBIDA\nEM_PRODUCAO\nPRONTA | EM_ENTREGA\nENTREGUE | CANCELADA"];
+    StatusEtapaProducao [label="StatusEtapaProducao\nPENDENTE\nEM_ANDAMENTO\nPAUSADA | CONCLUIDA"];
+    FormaPagamento [label="FormaPagamento\nPIX | DINHEIRO\nCARTAO_CREDITO\nCARTAO_DEBITO\nTRANSFERENCIA | OUTRA"];
+    StatusPagamento [label="StatusPagamento\nCONFIRMADO\nESTORNADO"];
+    TipoAlteracao [label="TipoAlteracao\nSOLICITACAO_CLIENTE\nDADOS_ENCOMENDA | PRAZO\nSTATUS | ITEM | PERSONALIZACAO\nETAPA_PRODUCAO | PAGAMENTO"];
+  }
+
+  // Alinhamento para reduzir cruzamentos e deixar as cardinalidades legíveis.
+  { rank=min; Cliente; Usuario; }
+  { rank=same; ItemEncomenda; EtapaProducao; Pagamento; HistoricoAlteracao; }
+  { rank=same; Personalizacao; }
+  Cliente -> Usuario [style=invis, weight=100];
+  ItemEncomenda -> EtapaProducao [style=invis, weight=100];
+  EtapaProducao -> Pagamento [style=invis, weight=100];
+  Pagamento -> HistoricoAlteracao [style=invis, weight=100];
+
+  // Associações JPA e multiplicidades
+  Cliente -> Encomenda [dir=both, arrowtail=none, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.8, labelangle=25];
+  Encomenda -> ItemEncomenda [dir=both, arrowtail=none, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.8, labelangle=25];
+  ItemEncomenda -> Personalizacao [dir=both, arrowtail=none, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.8, labelangle=25];
+  Encomenda -> EtapaProducao [dir=both, arrowtail=none, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.8, labelangle=25];
+  Encomenda -> Pagamento [dir=both, arrowtail=none, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.8, labelangle=25];
+  Encomenda -> HistoricoAlteracao [dir=both, arrowtail=none, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.8, labelangle=25];
+  Usuario -> HistoricoAlteracao [dir=both, arrowtail=none, arrowhead=none, taillabel="0..1", headlabel="0..*", style=dashed, labeldistance=1.8, labelangle=25];
+  Usuario -> Pagamento [dir=both, arrowtail=none, arrowhead=none, taillabel="0..1", headlabel="0..*", style=dashed, labeldistance=1.8, labelangle=25];
+  Usuario -> EtapaProducao [dir=both, arrowtail=none, arrowhead=none, taillabel="0..1", headlabel="0..*", style=dashed, labeldistance=1.8, labelangle=25];
+
+  // Os tipos enumerados aparecem diretamente nos atributos das entidades.
+
+}
